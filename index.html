@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Пашко Мирослав, ІП-41, лабораторна робота 5, JavaScript, події, регулярні вирази">
+    <meta name="description" content="Лабораторна робота №5: події та регулярні вирази в JavaScript (варіант 6)">
+    <meta name="author" content="Пашко Мирослав Павлович">
+    <title>Пашко М. П., ІП-41, ЛР-5, Варіант 6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Лабораторна робота №5 (варіант 6)</h1>
+
+    <!-- ===================== Завдання 1 ===================== -->
+    <section>
+        <h2>Завдання 1. Форма з перевіркою даних</h2>
+        <p class="hint">Варіант 6 — рядки таблиці 2: 1, 7, 8, 9, 10.</p>
+
+        <form id="student-form" novalidate>
+            <div class="form-row" data-field="fullName">
+                <label for="fullName">ПІБ:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Пашко М.П.">
+                <span class="format">Формат: ТТТТТТ Т.Т.</span>
+            </div>
+
+            <div class="form-row" data-field="birthDate">
+                <label for="birthDate">Дата народж.:</label>
+                <input type="text" id="birthDate" name="birthDate" placeholder="09.08.2006">
+                <span class="format">Формат: ЧЧ.ЧЧ.ЧЧЧЧ</span>
+            </div>
+
+            <div class="form-row" data-field="address">
+                <label for="address">Адреса:</label>
+                <input type="text" id="address" name="address" placeholder="м. 123456">
+                <span class="format">Формат: м. ЧЧЧЧЧЧ</span>
+            </div>
+
+            <div class="form-row" data-field="email">
+                <label for="email">e-mail:</label>
+                <input type="text" id="email" name="email" placeholder="myroslav@gmail.com">
+                <span class="format">Формат: тттттт@ттттт.com</span>
+            </div>
+
+            <div class="form-row" data-field="telegram">
+                <label for="telegram">Telegram:</label>
+                <input type="text" id="telegram" name="telegram" placeholder="@m_pashko">
+                <span class="format">Формат: @Т_ТТТТТ</span>
+            </div>
+
+            <button type="submit">Надіслати</button>
+        </form>
+    </section>   
+    <script src="script.js"></script>
+</body>
+</html>
