@@ -64,3 +64,26 @@ section {
     font-size: 15px;
     cursor: pointer;
 }
+
+/* ---------- Завдання 2: таблиця ---------- */
+
+#grid {
+    border-collapse: collapse;
+}
+
+#grid td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333333;
+    text-align: center;
+    font-size: 16px;
+    user-select: none;
+}
+
+/* Клітинка варіанту, з якою працюють події */
+#grid td.variant-cell {
+    font-weight: bold;
+    cursor: pointer;
+    outline: 2px dashed #333333;
+    outline-offset: -5px;
+}

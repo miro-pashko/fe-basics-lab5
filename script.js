@@ -112,3 +112,55 @@ Object.keys(rules).forEach(function (name) {
         }
     });
 });
+
+// ===================== Завдання 2 =====================
+
+const SIZE = 6;
+const VARIANT = 6;
+const grid = document.getElementById("grid");
+const palette = document.getElementById("palette");
+
+// Створюємо таблицю 6×6 з номерами від 1 до 36 по рядках
+for (let r = 0; r < SIZE; r++) {
+    const tr = document.createElement("tr");
+    for (let c = 0; c < SIZE; c++) {
+        const td = document.createElement("td");
+        td.textContent = r * SIZE + c + 1;
+        tr.appendChild(td);
+    }
+    grid.appendChild(tr);
+}
+
+// Випадковий колір у форматі #rrggbb
+function randomColor() {
+    const n = Math.floor(Math.random() * 0x1000000);
+    return "#" + n.toString(16).padStart(6, "0");
+}
+
+const variantCell = grid.rows[Math.floor((VARIANT - 1) / SIZE)]
+    .cells[(VARIANT - 1) % SIZE];
+variantCell.classList.add("variant-cell");
+
+// Наведення — випадковий колір
+variantCell.addEventListener("mouseover", function () {
+    variantCell.style.backgroundColor = randomColor();
+});
+
+// Клік — колір, обраний у палітрі
+variantCell.addEventListener("click", function () {
+    variantCell.style.backgroundColor = palette.value;
+});
+
+// Подвійний клік — зафарбовуємо прямокутник від обраної клітинки
+// до правого нижнього кута таблиці
+variantCell.addEventListener("dblclick", function () {
+    const startRow = variantCell.parentElement.rowIndex;
+    const startCol = variantCell.cellIndex;
+    const color = palette.value;
+
+    for (let r = startRow; r < SIZE; r++) {
+        for (let c = startCol; c < SIZE; c++) {
+            grid.rows[r].cells[c].style.backgroundColor = color;
+        }
+    }
+});
