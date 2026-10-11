@@ -10,8 +10,8 @@ const rules = {
     // ЧЧ.ЧЧ.ЧЧЧЧ — день 01–31, місяць 01–12, рік 1900–2099
     birthDate: /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}$/,
 
-    // м. ЧЧЧЧЧЧ — «м.», пробіл і шість цифр
-    address: /^м\. \d{6}$/,
+    // м. ТТТТТТ — «м.», пробіл і назва міста з великої літери (до 6 літер)
+    address: /^м\. [А-ЯІЇЄҐ][а-яіїєґ]{0,5}$/,
 
     // тттттт@ттттт.com — малі латинські літери, домен .com
     email: /^[a-z]+@[a-z]+\.com$/,
@@ -151,15 +151,21 @@ variantCell.addEventListener("click", function () {
     variantCell.style.backgroundColor = palette.value;
 });
 
-// Подвійний клік — зафарбовуємо прямокутник від обраної клітинки
-// до правого нижнього кута таблиці
+// Розміри прямокутника: 4 рядки вниз і 3 стовпці вліво від обраної клітинки
+const RECT_ROWS = 4;
+const RECT_COLS = 3;
+
+// Подвійний клік — зафарбовуємо прямокутник, що починається з обраної клітинки:
+// для клітинки 6 це останні 3 стовпці та перші 4 рядки (4–6, 10–12, 16–18, 22–24)
 variantCell.addEventListener("dblclick", function () {
     const startRow = variantCell.parentElement.rowIndex;
-    const startCol = variantCell.cellIndex;
+    const endCol = variantCell.cellIndex;
+    const endRow = Math.min(startRow + RECT_ROWS - 1, SIZE - 1);
+    const startCol = Math.max(endCol - RECT_COLS + 1, 0);
     const color = palette.value;
 
-    for (let r = startRow; r < SIZE; r++) {
-        for (let c = startCol; c < SIZE; c++) {
+    for (let r = startRow; r <= endRow; r++) {
+        for (let c = startCol; c <= endCol; c++) {
             grid.rows[r].cells[c].style.backgroundColor = color;
         }
     }
